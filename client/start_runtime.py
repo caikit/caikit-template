@@ -19,16 +19,24 @@ import sys
 # First Party
 import alog
 
+# Since the `example`package`is not installed and it is not present in path,
+# we are adding it directly
 sys.path.append(
     path.abspath(path.join(path.dirname(__file__), "../"))
-)  # Here we assume that `start_runtime` file is at the same level of the `example` package
+)
 
 # Local
 import example
+import caikit
+from caikit.runtime import grpc_server
+
+# Load configuration for model(s) serving
+CONFIG_PATH = path.realpath(
+    path.join(path.dirname(__file__), "config.yml")
+)
+caikit.configure(CONFIG_PATH)
 
 alog.configure(default_level="debug")
 
-# Local
-from caikit.runtime import grpc_server
-
+# Load the model(s) in a gRPC server
 grpc_server.main()

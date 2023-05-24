@@ -13,11 +13,37 @@ The following tools are required:
 
 Install the dependencies: `pip install -r requirements.txt`
 
-## Starting the Caikit runtime
+## Repository Layout
+
+```text
+├── caikit-template/: top-level package directory (will change to your repo name fater deploy template)
+│   │── client/: a directory which contains artefacts to use (serve, infer and train) the model defined in the `example` package
+|       ├── config.yml: configuration for handling the model in Caikit runtime
+│       ├── infer_model.py: client code that calls the model that is being served by Caikit to perform inference
+│       ├── models/: a directory that contains the metadata of the models
+│       │   ├── example/config.yml: specifies metadata that defines the example Caikit model 
+│       ├── start_runtime.py: a wrapper to start the Caikit runtime as gRPC server and load model
+|       ├── train_data/: a directory which contains the training data
+|       |   ├── sample_data.csv: sample training data set to perform training
+│       ├── train_model.py: client code that calls the model that is being served by Caikit to perform training
+│   │── example/: a directory that defines the model in a format that Caikit can serve (load/infer/train) them 
+│   │   ├── config.yml: specifies configuration that defines the interface to the model served by Caikit
+│   │   ├── __init__.py: configures the library with the configuration file path and makes the data and runtime model packages visible
+│   │   ├── data_model/: directory for data model code
+│   │   │   ├── hello_world.py: data model classes that represents the AI model attributes in code
+│   │   │   ├── __init__.py: makes the data model class visible in the project
+│   │   ├── runtime_model/: directory for runtime model code
+│   │   │   ├── example_block.py: a class that bootstraps the AI model in Caikit so it can be served
+│   │   │   ├── __init__.py: makes the runtime model class visible in the project
+└── └── requirements.txt: specifies library dependencies
+```
+
+## Starting the Caikit Runtime
 
 In one terminal, start the runtime server:
 
 ```shell
+cd client
 python3 start_runtime.py
 ```
 
@@ -46,7 +72,8 @@ $ python3 start_runtime.py
 In another terminal, run the client code to infer the model:
 
 ```shell
-python3 client.py
+cd client
+python3 infer_model.py
 ```
 
 The client code calls the model and queries for generated text using text passed from the client.
@@ -64,6 +91,7 @@ RESPONSE: greeting: "Hello World"
 In another terminal, run the client code to train the model:
 
 ```shell
+cd client
 python3 train_model.py
 ```
 
@@ -73,7 +101,7 @@ trained model to `training_output/` by default.
 You should see output similar to the following:
 
 ```command
-$ python3 client.py
+$ python3 train_model.py
 
 RESPONSE: training_id: "ace2fd4c-0a50-49ef-b4db-9d9bbe2eefaf"
 model_name: "example"

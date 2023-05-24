@@ -14,11 +14,31 @@
 
 # Third Party
 import grpc
+from os import path
+import sys
 
 # Local
+import caikit
 from caikit.config import configure
 from caikit.runtime.service_factory import ServicePackageFactory
+
+# Since the `example`package`is not installed and it is not present in path,
+# we are adding it directly
+sys.path.append(
+    path.abspath(path.join(path.dirname(__file__), "../"))
+)
+
 from example.data_model.hello_world import HelloWorldInput
+
+# Load configuration for model(s) serving
+CONFIG_PATH = path.realpath(
+    path.join(path.dirname(__file__), "config.yml")
+)
+caikit.configure(CONFIG_PATH)
+
+# NOTE: The model id needs to be a path to folder.
+# NOTE: This is relative path to the models directory
+MODEL_ID = "example"
 
 inference_service = ServicePackageFactory().get_service_package(
     ServicePackageFactory.ServiceType.INFERENCE,
@@ -35,7 +55,7 @@ request = inference_service.messages.ExampleBlockRequest(text_input=hello_world_
 
 ## Fetch predictions from server (infer)
 response = client_stub.ExampleBlockPredict(
-    request, metadata=[("mm-model-id", "example")]
+    request, metadata=[("mm-model-id", MODEL_ID)]
 )
 
 ## Print response

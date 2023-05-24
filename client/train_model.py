@@ -13,12 +13,27 @@
 # limitations under the License.
 
 # Third Party
-from os import path
 import grpc
+from os import path
+import sys
 
 # Local
+import caikit
 from caikit.runtime.service_factory import ServicePackageFactory
-from example.data_model import HelloWorldInput
+
+# Since the `example`package`is not installed and it is not present in path,
+# we are adding it directly
+sys.path.append(
+    path.abspath(path.join(path.dirname(__file__), "../"))
+)
+
+from example.data_model.hello_world import HelloWorldInput
+
+# Load configuration for model(s) serving
+CONFIG_PATH = path.realpath(
+    path.join(path.dirname(__file__), "config.yml")
+)
+caikit.configure(CONFIG_PATH)
 
 training_service = ServicePackageFactory().get_service_package(
     ServicePackageFactory.ServiceType.TRAINING,
@@ -30,7 +45,8 @@ channel = grpc.insecure_channel(f"localhost:{port}")
 client_stub = training_service.stub_class(channel)
 
 ## Create request
-training_data = path.join("train_data", "sample_data.csv")
+training_data = path.realpath(path.join("train_data", "sample_data.csv"))
+print("train data:", training_data)
 request = training_service.messages.RuntimeExampleBlockExampleBlockTrainRequest(
     training_data={"file": {"filename": training_data}}, model_name="example",
 )

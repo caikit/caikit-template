@@ -7,7 +7,7 @@ dist
 htmlcov
 build
 test
-training_output/
+client/train_output/
 
 # IDEs
 .vscode/
