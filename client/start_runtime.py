@@ -19,7 +19,7 @@ import sys
 # First Party
 import alog
 
-# Since the `example`package`is not installed and it is not present in path,
+# Since the `example` package is not installed and it is not present in path,
 # we are adding it directly
 sys.path.append(
     path.abspath(path.join(path.dirname(__file__), "../"))

@@ -74,13 +74,14 @@ class ExampleBlock(base.BlockBase):
         # NOTE:
         # 1. Output of a run function needs to be a data model. In this case
         #    we have used ExampleBlockPrediction as an example.
-        # 2. The input and output data model, i.e ExampleBlockPrediction
-        #    are only used for demo purposes. A developer of new module
-        #    can use any data model (as output). There are a lot of pre-built
+        # 2. The input and output data model (for example ExampleBlockPrediction for output)
+        #    are only used for demo purposes. A developer of a new module
+        #    can use any data model (as output). There are a lot of 
+        #    pre-built (https://github.com/caikit/caikit/tree/main/caikit/interfaces)
         #    data models provided already, but if those are not suitable for the use-case,
         #    then one can choose to build their own data model as well.
-        # 3. It is required for the `run` function to have proper doc strings as
-        #    these gets used for runtime automation
+        # 3. It is required for the `run` function to have proper doc strings and type hints 
+        #    as these get used for runtime automation
         # 4. This function is meant to process single example inference only.
         #    For a batch request, please implement `run_batch` function, which would
         #    accept list of text (as example) as input and return List of

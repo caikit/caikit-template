@@ -22,7 +22,7 @@ import caikit
 from caikit.config import configure
 from caikit.runtime.service_factory import ServicePackageFactory
 
-# Since the `example`package`is not installed and it is not present in path,
+# Since the `example` package is not installed and it is not present in path,
 # we are adding it directly
 sys.path.append(
     path.abspath(path.join(path.dirname(__file__), "../"))

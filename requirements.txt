@@ -1,1 +1,1 @@
-caikit
+caikit==0.4.4
