@@ -27,11 +27,10 @@ Install the dependencies: `pip install -r requirements.txt`
 ```text
 ├── caikit-template/:               top-level package directory (will change to your repo name after template is deployed)
 │   │── client/:                    a directory which contains artifacts to use (serve, infer and train) the model defined in the `example` package
-|       ├── config.yml:             configuration for handling the model in the Caikit runtime
+|       ├── config.yml:             configuration for accessing the model in the Caikit runtime
 │       ├── infer_model.py:         client code that calls the model that is being served by Caikit to perform inference
 │       ├── models/:                a directory that contains the metadata of the models
 │       │   ├── example/config.yml: metadata that defines the example Caikit model 
-│       ├── start_runtime.py:       a wrapper to start the Caikit runtime as a gRPC server. The runtime will load the model at startup
 |       ├── train_data/:            a directory which contains the training data
 |       |   ├── sample_data.csv:    sample training dataset to perform training onm the model
 │       ├── train_model.py:         client code that calls the model that is being served by Caikit to perform training
@@ -43,6 +42,9 @@ Install the dependencies: `pip install -r requirements.txt`
 │   │   │   ├── example_block.py:   a class that bootstraps the AI model in Caikit so it can be served and used (infer/train)
 │   │   │   ├── __init__.py:        makes the example_block class visible in the project
 |   |   |── __init__.py:            makes the data_model and runtime_model packages visible
+│   │── server/:                    a directory which contains artifacts to start Caikit runtime
+|       ├── config.yml:             configuration for handling the model by the Caikit runtime
+│       ├── start_runtime.py:       a wrapper to start the Caikit runtime as a gRPC server. The runtime will load the model at startup
 └── └── requirements.txt:           specifies library dependencies
 ```
 
