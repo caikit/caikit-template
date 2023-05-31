@@ -30,7 +30,7 @@ sys.path.append(
 
 from example.data_model.hello_world import HelloWorldInput
 
-# Load configuration for model(s) serving
+# Load configuration for Caikit runtime
 CONFIG_PATH = path.realpath(
     path.join(path.dirname(__file__), "config.yml")
 )
@@ -51,10 +51,10 @@ client_stub = inference_service.stub_class(channel)
 
 ## Create request object
 hello_world_proto = HelloWorldInput(name="World").to_proto()
-request = inference_service.messages.ExampleBlockRequest(text_input=hello_world_proto)
+request = inference_service.messages.HelloWorldRequest(text_input=hello_world_proto)
 
 ## Fetch predictions from server (infer)
-response = client_stub.ExampleBlockPredict(
+response = client_stub.HelloWorldPredict(
     request, metadata=[("mm-model-id", MODEL_ID)]
 )
 

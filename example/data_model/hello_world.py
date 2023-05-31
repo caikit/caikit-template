@@ -26,14 +26,14 @@ class HelloWorldInput(DataObjectBase):
     name: str
 
 @dataobject(package="example.data_model")
-class ExampleTrainingType(DataObjectBase):
+class HelloWorldTrainingType(DataObjectBase):
     """A example `training data` type for the `example_task` task."""
 
     text: str
     label: str
 
 @dataobject(package="example.data_model")   
-class ExampleBlockPrediction(DataObjectBase):
+class HelloWorldPrediction(DataObjectBase):
     """A simple return type for the `example_task` task"""
 
     greeting: str

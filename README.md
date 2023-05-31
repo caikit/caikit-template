@@ -9,7 +9,11 @@ The following tools are required:
 - [python](https://www.python.org) (v3.8+)
 - [pip](https://pypi.org/project/pip/) (v23.0+)
 
-**Note: Before installing dependencies and to avoid conflicts in your environment, it is advisable to use a [virtual environment(venv)](https://docs.python.org/3/library/venv.html).**
+**Note:** Before installing dependencies and to avoid conflicts in your environment, it is advisable to use a virtual environment. The subsection which follows provides an example of a virtual environment, python venv.
+
+Install the dependencies: `pip install -r requirements.txt`
+
+### (Optional) Setting Up Virtual Environment using Python venv
 
 For [(venv)](https://docs.python.org/3/library/venv.html)], make sure you are in an activated `venv` when running `python` in the example commands that follow. Use `deactivate` if you want to exit the `venv`.
 
@@ -20,27 +24,25 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-Install the dependencies: `pip install -r requirements.txt`
-
 ## Repository Layout
 
 ```text
 ├── caikit-template/:               top-level package directory (will change to your repo name after template is deployed)
-│   │── client/:                    a directory which contains artifacts to use (serve, infer and train) the model defined in the `example` package
-|       ├── config.yml:             configuration for accessing the model in the Caikit runtime
-│       ├── infer_model.py:         client code that calls the model that is being served by Caikit to perform inference
+│   │── client/:                    a directory which contains artifacts to use (infer and train) the AI model spceified in the `example` package
+|       ├── config.yml:             caikit runtime configuration file
+│       ├── infer_model.py:         sample client which calls the Caikit runtime to perform inference on a model is is serving
 │       ├── models/:                a directory that contains the metadata of the models
 │       │   ├── example/config.yml: metadata that defines the example Caikit model 
 |       ├── train_data/:            a directory which contains the training data
-|       |   ├── sample_data.csv:    sample training dataset to perform training onm the model
-│       ├── train_model.py:         client code that calls the model that is being served by Caikit to perform training
-│   │── example/:                   a directory that defines the model in a format that Caikit can serve (load/infer/train) 
-│   │   ├── data_model/:            a directory that contains the data format of the model
-│   │   │   ├── hello_world.py:     data model class that represents the AI model attributes in code
+|       |   ├── sample_data.csv:    sample training dataset to perform training of the model
+│       ├── train_model.py:         sample client which calls the Caikit runtime to perform training on a model is is serving
+│   │── example/:                   a directory that defines Caikit module(s) that can include algorithm(s) implementation that can train/run an AI model 
+│   │   ├── data_model/:            a directory that contains the data format of the Caikit module
+│   │   │   ├── hello_world.py:     data class that represents the AI model attributes in code
 │   │   │   ├── __init__.py:        makes the hello_world class visible in the project
-│   │   ├── runtime_model/:         a directory that contains the runtime code of the model
-│   │   │   ├── example_block.py:   a class that bootstraps the AI model in Caikit so it can be served and used (infer/train)
-│   │   │   ├── __init__.py:        makes the example_block class visible in the project
+│   │   ├── runtime_model/:         a directory that contains the Caikit runtime code of the model
+│   │   │   ├── hello_world.py:   a class that bootstraps the AI model in Caikit so it can be served and used (infer/train)
+│   │   │   ├── __init__.py:        makes the hello_world class visible in the project
 |   |   |── __init__.py:            makes the data_model and runtime_model packages visible
 │   │── server/:                    a directory which contains artifacts to start Caikit runtime
 |       ├── config.yml:             configuration for handling the model by the Caikit runtime

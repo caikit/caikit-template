@@ -29,7 +29,7 @@ sys.path.append(
 
 from example.data_model.hello_world import HelloWorldInput
 
-# Load configuration for model(s) serving
+# Load configuration for Caikit runtime
 CONFIG_PATH = path.realpath(
     path.join(path.dirname(__file__), "config.yml")
 )
@@ -47,11 +47,11 @@ client_stub = training_service.stub_class(channel)
 ## Create request
 training_data = path.realpath(path.join("train_data", "sample_data.csv"))
 print("train data:", training_data)
-request = training_service.messages.RuntimeExampleBlockExampleBlockTrainRequest(
+request = training_service.messages.RuntimeHelloWorldHelloWorldTrainRequest(
     training_data={"file": {"filename": training_data}}, model_name="example",
 )
 
 ## Kick off training from server
-response = client_stub.RuntimeExampleBlockExampleBlockTrain(request)
+response = client_stub.RuntimeHelloWorldHelloWorldTrain(request)
 
 print("RESPONSE:", response)

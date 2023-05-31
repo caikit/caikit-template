@@ -12,4 +12,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from .example_block import ExampleBlock
+from .hello_world import HelloWorld
