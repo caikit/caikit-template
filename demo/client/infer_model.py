@@ -42,7 +42,6 @@ MODEL_ID = "hello_world"
 
 inference_service = ServicePackageFactory().get_service_package(
     ServicePackageFactory.ServiceType.INFERENCE,
-    ServicePackageFactory.ServiceSource.GENERATED,
 )
 
 port = 8085
@@ -51,10 +50,10 @@ client_stub = inference_service.stub_class(channel)
 
 ## Create request object
 hello_world_proto = HelloWorldInput(name="World").to_proto()
-request = inference_service.messages.HelloWorldRequest(text_input=hello_world_proto)
+request = inference_service.messages.HelloWorldTaskRequest(text_input=hello_world_proto)
 
 ## Fetch predictions from server (infer)
-response = client_stub.HelloWorldPredict(
+response = client_stub.HelloWorldTaskPredict(
     request, metadata=[("mm-model-id", MODEL_ID)]
 )
 

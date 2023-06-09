@@ -167,5 +167,5 @@ cython_debug/
 
 # Caikit generated files
 tests/protos/*
-client/train_output/
+demo/train_output/
 

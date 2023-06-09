@@ -13,9 +13,8 @@
 # limitations under the License.
 
 import alog
-from caikit.core.blocks import base, block, BlockSaver
+from caikit.core import ModuleBase, ModuleLoader, ModuleSaver, TaskBase, module, task
 from caikit.core.data_model import DataStream
-from caikit.core.module import ModuleConfig
 from caikit.core.toolkit.errors import error_handler
 from caikit_template.data_model.hello_world import (HelloWorldInput,
                                                    HelloWorldPrediction,
@@ -26,14 +25,20 @@ import os
 logger = alog.use_channel("<SMPL_BLK>")
 error = error_handler.get(logger)
 
-
-
-@block(
-    id="00110203-0405-0607-0809-0a0b02dd0e0f",
-    name="HelloWorldBlock",
-    version="0.0.1"
+@task(
+    required_parameters={"text_input": HelloWorldInput},
+    output_type=HelloWorldPrediction,
 )
-class HelloWorld(base.BlockBase):
+class HelloWorldTask(TaskBase):
+    pass
+
+@module(
+    "00110203-0405-0607-0809-0a0b02dd0e0f",
+    "HelloWorldModule",
+    "0.0.1",
+    HelloWorldTask,
+)
+class HelloWorldModule(ModuleBase):
 
     def __init__(self, model=None) -> None:
         """Function to initialize the HelloWorld.
@@ -50,7 +55,8 @@ class HelloWorld(base.BlockBase):
             model_path: str
                 Path to caikit model.
         """
-        config = ModuleConfig.load(model_path)
+        loader = ModuleLoader(model_path)
+        config = loader.config
 
         # Utilize config to access parameters needed.
         # For example, if you need to extract tokenizer path, you can do:
@@ -68,7 +74,7 @@ class HelloWorld(base.BlockBase):
             text_input: str
                 Input text to be processed
         Returns:
-            HelloWorldBlockPrediction: the output
+            HelloWorldPrediction: the output
         """
         # This is the main function used for inferencing.
         # NOTE:
@@ -98,11 +104,11 @@ class HelloWorld(base.BlockBase):
             model_path: str
                 Path to store model into
         """
-        block_saver = BlockSaver(
+        module_saver = ModuleSaver(
             self,
             model_path=model_path,
         )
-        with block_saver:
+        with module_saver:
 
             temp_model_file = os.path.join(model_path,  "temp_model.txt")
             # Write into temp_model_file as example
@@ -114,12 +120,12 @@ class HelloWorld(base.BlockBase):
                 "tokenizer_path": "<EXAMPLE>",
                 "temp_model_path": temp_model_file
             }
-            block_saver.update_config(config_options)
+            module_saver.update_config(config_options)
 
 
 
     @classmethod
-    def train(cls, training_data: DataStream[HelloWorldTrainingType], *args, **kwargs) -> "HelloWorld":
+    def train(cls, training_data: DataStream[HelloWorldTrainingType], *args, **kwargs) -> "HelloWorldModule":
         """Function to take a data stream as input and train a model.
 
         Note:
@@ -133,8 +139,8 @@ class HelloWorld(base.BlockBase):
             training_data: DataStream
                 Training data stream of `HelloWorldTrainingType` type
         Returns:
-            HelloWorld
-                Object of HelloWorld as output that can be used to make
+            HelloWorldModule
+                Object of HelloWorldModule as output that can be used to make
                 inference call using `.run` function or persist the model using
                 `.save` function.
         """
