@@ -22,13 +22,13 @@ import caikit
 from caikit.config import configure
 from caikit.runtime.service_factory import ServicePackageFactory
 
-# Since the `example` package is not installed and it is not present in path,
+# Since the `caikit_template` package is not installed and it is not present in path,
 # we are adding it directly
 sys.path.append(
-    path.abspath(path.join(path.dirname(__file__), "../"))
+    path.abspath(path.join(path.dirname(__file__), "../../"))
 )
 
-from example.data_model.hello_world import HelloWorldInput
+from caikit_template.data_model.hello_world import HelloWorldInput
 
 # Load configuration for Caikit runtime
 CONFIG_PATH = path.realpath(
@@ -38,7 +38,7 @@ caikit.configure(CONFIG_PATH)
 
 # NOTE: The model id needs to be a path to folder.
 # NOTE: This is relative path to the models directory
-MODEL_ID = "example"
+MODEL_ID = "hello_world"
 
 inference_service = ServicePackageFactory().get_service_package(
     ServicePackageFactory.ServiceType.INFERENCE,

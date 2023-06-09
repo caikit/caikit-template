@@ -17,7 +17,7 @@ from caikit.core.blocks import base, block, BlockSaver
 from caikit.core.data_model import DataStream
 from caikit.core.module import ModuleConfig
 from caikit.core.toolkit.errors import error_handler
-from example.data_model.hello_world import (HelloWorldInput,
+from caikit_template.data_model.hello_world import (HelloWorldInput,
                                                    HelloWorldPrediction,
                                                    HelloWorldTrainingType)
 

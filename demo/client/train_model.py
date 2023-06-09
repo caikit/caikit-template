@@ -21,13 +21,13 @@ import sys
 import caikit
 from caikit.runtime.service_factory import ServicePackageFactory
 
-# Since the `example` package is not installed and it is not present in path,
+# Since the `caikit_template` package is not installed and it is not present in path,
 # we are adding it directly
 sys.path.append(
-    path.abspath(path.join(path.dirname(__file__), "../"))
+    path.abspath(path.join(path.dirname(__file__), "../../"))
 )
 
-from example.data_model.hello_world import HelloWorldInput
+from caikit_template.data_model.hello_world import HelloWorldInput
 
 # Load configuration for Caikit runtime
 CONFIG_PATH = path.realpath(
@@ -45,13 +45,13 @@ channel = grpc.insecure_channel(f"localhost:{port}")
 client_stub = training_service.stub_class(channel)
 
 ## Create request
-training_data = path.realpath(path.join("train_data", "sample_data.csv"))
+training_data = path.realpath(path.join("..", "train_data", "sample_data.csv"))
 print("train data:", training_data)
-request = training_service.messages.RuntimeHelloWorldHelloWorldTrainRequest(
-    training_data={"file": {"filename": training_data}}, model_name="example",
+request = training_service.messages.BlocksHelloWorldHelloWorldTrainRequest(
+    training_data={"file": {"filename": training_data}}, model_name="hello_world",
 )
 
 ## Kick off training from server
-response = client_stub.RuntimeHelloWorldHelloWorldTrain(request)
+response = client_stub.BlocksHelloWorldHelloWorldTrain(request)
 
 print("RESPONSE:", response)

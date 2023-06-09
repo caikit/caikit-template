@@ -1,3 +1,4 @@
+
 # Copyright The Caikit Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -11,7 +12,13 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-import os
 
-from . import data_model, runtime
+# Caikit model configuration
+runtime:
+    # Package name containing the model wrapping
+    library: caikit_template
 
+    # Model wrapping configuration
+    service_generation:
+        primitive_data_model_types:
+            - "caikit_template.data_model.hello_world.HelloWorldInput"

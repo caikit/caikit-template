@@ -1,0 +1,10 @@
+block_class: caikit_template.blocks.hello_world.HelloWorld
+block_id: 00110203-0405-0607-0809-0a0b02dd0e0f
+caikit_template_version: 0.0.0
+created: '2023-06-09 10:34:51.674890'
+name: HelloWorldBlock
+saved: '2023-06-09 10:34:51.674903'
+temp_model_path: ../train_output/6363d05d-e196-4088-a976-3be4c06e226d/hello_world/temp_model.txt
+tokenizer_path: <EXAMPLE>
+tracking_id: 556ecb01-7fe2-49ef-a5ef-564fad91147b
+version: 0.0.1

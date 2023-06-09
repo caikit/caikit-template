@@ -19,14 +19,14 @@ import sys
 # First Party
 import alog
 
-# Since the `example` package is not installed and it is not present in path,
+# Since the `caikit_template` package is not installed and it is not present in path,
 # we are adding it directly
 sys.path.append(
-    path.abspath(path.join(path.dirname(__file__), "../"))
+    path.abspath(path.join(path.dirname(__file__), "../../"))
 )
 
 # Local
-import example
+import caikit_template
 import caikit
 from caikit.runtime import grpc_server
 

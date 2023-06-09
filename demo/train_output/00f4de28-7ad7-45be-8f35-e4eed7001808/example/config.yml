@@ -1,0 +1,10 @@
+block_class: example.runtime.example_block.ExampleBlock
+block_id: 00110203-0405-0607-0809-0a0b02dd0e0f
+created: '2023-05-24 11:38:10.143685'
+example_version: 0.0.0
+name: ExampleBlock
+saved: '2023-05-24 11:38:10.143698'
+temp_model_path: ../client/train_output/00f4de28-7ad7-45be-8f35-e4eed7001808/example/temp_model.txt
+tokenizer_path: <EXAMPLE>
+tracking_id: 2cd2ffad-fec9-4470-abbe-3e2eeb84b6fe
+version: 0.0.1
