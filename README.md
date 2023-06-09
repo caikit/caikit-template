@@ -41,8 +41,8 @@ source venv/bin/activate
 │   │── demo/:                              a directory which contains code and configuration to test the model
 │   │   │── client/:                        a directory which contains artifacts to use (infer and train) the AI model spceified in the `caikit_template` package
 |   │   │   ├── config.yml:                 caikit runtime configuration file
-│   │   │   ├── infer_model.py:             sample client which calls the Caikit runtime to perform inference on a model is is serving
-│   │   │   ├── train_model.py:             sample client which calls the Caikit runtime to perform training on a model is is serving
+│   │   │   ├── infer_model.py:             sample client which calls the Caikit runtime to perform inference on a model it is serving
+│   │   │   ├── train_model.py:             sample client which calls the Caikit runtime to perform training on a model it is serving
 │   │   │── models/:                        a directory that contains the Caikit metadata of the models and any artifacts required to run the models (usually generated after saving and should not be modified)
 │   │   │   ├── hello_world/config.yml:     a metadata that defines the example Caikit model
 │   │   │── server/:                        a directory which contains artifacts to start Caikit runtime
