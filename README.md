@@ -2,28 +2,6 @@
 
 GitHub Template with a boilerplate repository which serves an example AI model using [caikit](https://github.com/caikit/caikit).
 
-## Before Starting
-
-The following tools are required:
-
-- [python](https://www.python.org) (v3.8+)
-- [pip](https://pypi.org/project/pip/) (v23.0+)
-
-**Note:** Before installing dependencies and to avoid conflicts in your environment, it is advisable to use a virtual environment. The subsection which follows provides an example of a virtual environment, python venv.
-
-Install the dependencies: `pip install -r requirements.txt`
-
-### (Optional) Setting Up Virtual Environment using Python venv
-
-For [(venv)](https://docs.python.org/3/library/venv.html)], make sure you are in an activated `venv` when running `python` in the example commands that follow. Use `deactivate` if you want to exit the `venv`.
-
-For example, to create and activate a virtual environment using `venv`:
-
-```shell
-python3 -m venv venv
-source venv/bin/activate
-```
-
 ## Repository Layout
 
 ```text
@@ -53,7 +31,33 @@ source venv/bin/activate
 └── └── requirements.txt:                   specifies library dependencies
 ```
 
-## Starting the Caikit Runtime
+## Try it out
+
+The repository contains an example AI model that you can infer and train using the steps that follow.
+
+### Before Starting
+
+The following tools are required:
+
+- [python](https://www.python.org) (v3.8+)
+- [pip](https://pypi.org/project/pip/) (v23.0+)
+
+**Note:** Before installing dependencies and to avoid conflicts in your environment, it is advisable to use a virtual environment. The subsection which follows provides an example of a virtual environment, Python venv.
+
+Install the dependencies: `pip install -r requirements.txt`
+
+#### (Optional) Setting Up Virtual Environment using Python venv
+
+For [(venv)](https://docs.python.org/3/library/venv.html), make sure you are in an activated `venv` when running `python` in the example commands that follow. Use `deactivate` if you want to exit the `venv`.
+
+For example, to create and activate a virtual environment using `venv`:
+
+```shell
+python3 -m venv venv
+source venv/bin/activate
+```
+
+### Starting the Caikit Runtime
 
 In one terminal, start the runtime server:
 
@@ -94,7 +98,7 @@ $ python3 start_runtime.py
 {"channel": "SERVER-WRAPR", "exception": null, "level": "info", "log_code": "<RUN30032825I>", "message": "Re-routing RPC /caikit.runtime.Template.TemplateTrainingService/HelloWorldTaskHelloWorldModuleTrain from <function _ServiceBuilder._GenerateNonImplementedMethod.<locals>.<lambda> at 0x7fa470ff53a0> to <function CaikitRuntimeServerWrapper.safe_rpc_wrapper.<locals>.safe_rpc_call at 0x7fa4602adaf0>", "num_indent": 0, "thread_id": 8604329472, "timestamp": "2023-06-09T11:22:12.838619"}
 ```
 
-## Inferencing the Served Model
+### Inferencing the Served Model
 
 In another terminal, run the client code to infer the model:
 
@@ -113,7 +117,7 @@ $ python3 infer_model.py
 RESPONSE: greeting: "Hello World"
 ```
 
-## Training the Served Model
+### Training the Served Model
 
 In another terminal, run the client code to train the model:
 
