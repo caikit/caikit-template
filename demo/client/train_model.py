@@ -43,14 +43,14 @@ port = 8085
 channel = grpc.insecure_channel(f"localhost:{port}")
 client_stub = training_service.stub_class(channel)
 
-## Create request
+## Create train request
 training_data = path.realpath(path.join("..", "train_data", "sample_data.csv"))
 print("train data:", training_data)
 request = training_service.messages.HelloWorldTaskHelloWorldModuleTrainRequest(
     training_data={"file": {"filename": training_data}}, model_name="hello_world",
 )
 
-## Kick off training from server
+## Kick off training from the server
 response = client_stub.HelloWorldTaskHelloWorldModuleTrain(request)
 
 print("RESPONSE:", response)

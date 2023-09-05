@@ -1,1 +1,1 @@
-caikit==0.7.0
+caikit[runtime-grpc, runtime-http]==0.18.1

@@ -48,11 +48,11 @@ port = 8085
 channel = grpc.insecure_channel(f"localhost:{port}")
 client_stub = inference_service.stub_class(channel)
 
-## Create request object
+## Create task request
 hello_world_proto = HelloWorldInput(name="World").to_proto()
 request = inference_service.messages.HelloWorldTaskRequest(text_input=hello_world_proto)
 
-## Fetch predictions from server (infer)
+## Fetch the task prediction from the model (infer)
 response = client_stub.HelloWorldTaskPredict(
     request, metadata=[("mm-model-id", MODEL_ID)]
 )
