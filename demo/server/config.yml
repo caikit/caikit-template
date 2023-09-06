@@ -19,6 +19,14 @@ runtime:
     # All models in this directory are loaded at boot time
     local_models_dir: "../models"
 
+    grpc:
+        # Enable gRPC API
+        enabled: True
+
+    http:
+        # Enable REST API
+        enabled: True
+
     # Training configuration
     training:
         # The directory to save trained models in
