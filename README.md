@@ -53,8 +53,8 @@ For [(venv)](https://docs.python.org/3/library/venv.html), make sure you are in 
 For example, to create and activate a virtual environment using `venv`:
 
 ```shell
-python3 -m venv venv
-source venv/bin/activate
+python3 -m venv .venv
+source .venv/bin/activate
 ```
 
 ### Starting the Caikit Runtime
@@ -62,7 +62,8 @@ source venv/bin/activate
 In one terminal, start the runtime server:
 
 ```shell
-cd client
+cd demo
+cd server
 python3 start_runtime.py
 ```
 
@@ -103,6 +104,7 @@ $ python3 start_runtime.py
 In another terminal, run the client code to infer the model:
 
 ```shell
+cd demo
 cd client
 python3 infer_model.py
 ```
